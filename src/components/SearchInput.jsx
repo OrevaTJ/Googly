@@ -9,7 +9,7 @@ import {
     ButtonContainer,
 } from './SearchInput.Styled'
 
-export const SearchInput = ({showInput=false}) => {
+export const SearchInput = ({showinput=false}) => {
     const [input, setInput] = useState('')
     const navigate = useNavigate();
 
@@ -31,11 +31,11 @@ export const SearchInput = ({showInput=false}) => {
                 <InputMicIcon />
             </Tooltip>
         </InputField>
-        <ButtonContainer showInput={showInput}>
+        <ButtonContainer showinput={showinput}>
             <Button variant='outlined' type='submit'>
                 Google Search
             </Button>
-            <Button variant='outlined' type='submit'>
+            <Button variant='outlined'>
                 I'm Feeling Lucky
             </Button>
         </ButtonContainer>

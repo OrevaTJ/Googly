@@ -52,7 +52,7 @@ export const Home = () => {
         <LogoContainer>
             <img src='https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png' alt='GoogleLogo'/>
             <div>
-                <SearchInput showInput={true}/>
+                <SearchInput showinput={true}/>
             </div>
         </LogoContainer>
     </Container>

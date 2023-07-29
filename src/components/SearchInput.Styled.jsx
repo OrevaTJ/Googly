@@ -50,7 +50,7 @@ const InputMicIcon = styled(MicIcon)`
     cursor: pointer;
 `
 const ButtonContainer = styled.div`
-    display: ${(props) => props.showInput ? 'flex' : 'none'};
+    display: ${(props) => props.showinput ? 'flex' : 'none'};
     justify-content: center;
     > .MuiButtonBase-root {
         background-color: #f8f9fa;
