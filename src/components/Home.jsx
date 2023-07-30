@@ -13,7 +13,9 @@ import {
     LogoContainer,
 } from './Home.Styled'
 
-export const Home = () => {
+
+
+export const Home = ({ input, setInput }) => {
   return (
     <Container>
         <Header>
@@ -52,7 +54,7 @@ export const Home = () => {
         <LogoContainer>
             <img src='https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png' alt='GoogleLogo'/>
             <div>
-                <SearchInput showinput={true}/>
+                <SearchInput input={input} setInput={setInput} showinput={true}/>
             </div>
         </LogoContainer>
     </Container>

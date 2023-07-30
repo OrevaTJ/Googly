@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Tooltip, Avatar, IconButton } from '@mui/material'
 import AppsIcon from '@mui/icons-material/Apps';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -13,8 +13,18 @@ import {
 } from './SearchPage.Styled'
 import { SearchOptions } from './SearchOptions'
 import { SearchResult } from './SearchResult';
+import { useSearch } from './hooks/useSearch';
 
-export const SearchPage = () => {
+
+export const SearchPage = ({input, setInput}) => {
+  // const { data } = useSearch('test')
+  // const { location } = useLocation();
+  // const term = location ? location.split('?')[1] : '';
+
+  const { data } = useSearch(input);
+
+  
+
   return (
     <Container>
       <Header>
@@ -24,7 +34,7 @@ export const SearchPage = () => {
               src='https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png' alt='GoogleLogo'
             />
           </Link>
-          <SearchOptions />
+          <SearchOptions input={input} setInput={setInput} />
         </HearderLeft>
         <HearderRight>
           <StyledOptions>
@@ -60,7 +70,7 @@ export const SearchPage = () => {
         </HearderRight>
       </Header>
       {
-        true && <SearchResult />
+        !!data && <SearchResult data={data}/>
       }
     </Container>
   )

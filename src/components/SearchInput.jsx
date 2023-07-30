@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Avatar, Tooltip, Button } from '@mui/material'
+import { Tooltip, Button } from '@mui/material'
 import {
     FormContainer,
     InputField, 
@@ -9,8 +9,7 @@ import {
     ButtonContainer,
 } from './SearchInput.Styled'
 
-export const SearchInput = ({showinput=false}) => {
-    const [input, setInput] = useState('')
+export const SearchInput = ({input, setInput, showinput=false}) => {
     const navigate = useNavigate();
 
     const handleSearch = (e) => {

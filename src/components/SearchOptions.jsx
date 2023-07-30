@@ -14,10 +14,10 @@ import {
 } from './SearchPage.Styled'
 
 
-export const SearchOptions = () => {
+export const SearchOptions = ({ input, setInput }) => {
   return (
     <OptionsContainer>
-        <SearchInput />
+        <SearchInput input={input} setInput={setInput} />
         <Options>
             <StyledOptions>
                 <SearchIcon />
