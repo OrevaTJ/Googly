@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Tooltip, Avatar, IconButton } from '@mui/material'
 import AppsIcon from '@mui/icons-material/Apps';
 import SettingsIcon from '@mui/icons-material/Settings';
+import axios from "axios";
+
 import { 
   Container, 
   Header, 
@@ -14,16 +16,38 @@ import {
 import { SearchOptions } from './SearchOptions'
 import { SearchResult } from './SearchResult';
 import { useSearch } from './hooks/useSearch';
+import mocks from '../Response';
 
 
 export const SearchPage = ({input, setInput}) => {
-  // const { data } = useSearch('test')
-  // const { location } = useLocation();
-  // const term = location ? location.split('?')[1] : '';
+  const [data, setData] = useState(null);
 
-  const { data } = useSearch(input);
+  const BaseUrl = 'https://customsearch.googleapis.com/customsearch/v1'
 
-  
+  const API_KEY = import.meta.env.VITE_SEARCH_KEY;
+  const ENGINE_KEY = import.meta.env.VITE_SEARCH_ENGINE_KEY;
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(
+          `${BaseUrl}?key=${API_KEY}&cx=${ENGINE_KEY}&q=${input}`
+        );
+        console.log(response);
+        setData(response?.data);
+        console.log(`set data ${data}`);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    // const fetchData = async () => {
+    //     const response = await axios.get(
+    //         `${BaseUrl}?key=${API_KEY}&cx=${ENGINE_KEY}&q=${term}`
+    //     );
+    //     setData(response?.data);
+    // };
+    fetchData();
+  }, [input]);
 
   return (
     <Container>
@@ -69,9 +93,7 @@ export const SearchPage = ({input, setInput}) => {
           </StyledOptions>
         </HearderRight>
       </Header>
-      {
-        !!data && <SearchResult data={data}/>
-      }
+      { data && <SearchResult data={data}/> }
     </Container>
   )
 }

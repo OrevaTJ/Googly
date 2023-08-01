@@ -11,16 +11,28 @@ export const useSearch = (term) => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-      const fetchData = async () => {
+      async function fetchData() {
+        try {
           const response = await axios.get(
-              `${BaseUrl}?key=${API_KEY}&cx=${ENGINE_KEY}&q=${term}`
+            `${BaseUrl}?key=${API_KEY}&cx=${ENGINE_KEY}&q=${term}`
           );
-          setData(response ? response.data : response);
-      };
+          console.log(response);
+          setData(response?.data);
+          console.log(`set data ${data}`);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      // const fetchData = async () => {
+      //     const response = await axios.get(
+      //         `${BaseUrl}?key=${API_KEY}&cx=${ENGINE_KEY}&q=${term}`
+      //     );
+      //     setData(response?.data);
+      // };
       fetchData();
     }, [term]);
-
-  return (
-    data ? data : 'google'
-  );
+    console.log(`data ${data}`);
+    return (
+      data
+    );
 };

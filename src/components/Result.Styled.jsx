@@ -8,6 +8,11 @@ const Container = styled.div`
     height: 100vh;
     width: 100vw;
     max-width: 680px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 const ResultContainer = styled.div`
